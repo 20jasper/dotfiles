@@ -8,6 +8,7 @@ sudo dnf install -y \
   gcc \
   awk \
   fzf \
+  difftastic \
   libatomic # for node
   
 # rust
@@ -34,5 +35,5 @@ fi
 
 ln -sf "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
 ln -sf "$HOME/dotfiles/.profile" "$HOME/.profile"
-ln -sf "$HOME/dotfiles/.config/git/config" "$HOME/.config/git/config"
+ln -sf "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
 

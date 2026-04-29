@@ -1,0 +1,17 @@
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+[fetch]
+	prune = true
+[push]
+	autoSetupRemote = true
+[help]
+	autocorrect = 0
+[diff]
+	external = difft
+[user]
+	name = Jacob Asper
+	email = jacobasper191@gmail.com
