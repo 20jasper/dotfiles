@@ -32,3 +32,5 @@ export EDITOR=vim
 export VISUAL=vim
 
 eval "$(zoxide init bash --cmd cd)"
+
+source ./prompt

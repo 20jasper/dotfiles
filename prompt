@@ -1,0 +1,8 @@
+ORANGE='\[\e[38;5;208m\]'
+RESET='\[\e[0m\]'
+
+parse_git_branch() {
+  git symbolic-ref --short HEAD 2>/dev/null
+}
+
+PS1="${ORANGE}\w$(b=$(parse_git_branch); [ -n \"$b\" ] && echo " [$b]") ${RESET}"

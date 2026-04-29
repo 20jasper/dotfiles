@@ -1,3 +1,6 @@
+[alias]
+       	# Amend the currently staged files to the latest commit.
+	amend = commit --amend --reuse-message=HEAD
 [pull]
 	rebase = true
 [rebase]
