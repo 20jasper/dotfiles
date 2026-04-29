@@ -35,5 +35,5 @@ fi
 
 ln -sf "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
 ln -sf "$HOME/dotfiles/.profile" "$HOME/.profile"
-ln -sf "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
 
