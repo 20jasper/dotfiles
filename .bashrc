@@ -34,3 +34,4 @@ export VISUAL=vim
 eval "$(zoxide init bash --cmd cd)"
 
 source ./prompt
+eval "$(fzf --bash)"
