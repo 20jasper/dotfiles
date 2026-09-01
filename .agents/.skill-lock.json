@@ -6,9 +6,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/antfu/skills.git",
       "skillPath": "skills/vitest/SKILL.md",
-      "skillFolderHash": "b9413e0a4a6880e09e63f13ce59ee7de4019a27d",
+      "skillFolderHash": "6e59e3b95305499c21fc401b3dbddedbb8ead8a6",
       "installedAt": "2026-04-30T03:45:39.735Z",
-      "updatedAt": "2026-04-30T03:45:39.735Z"
+      "updatedAt": "2026-09-01T03:46:01.266Z"
     },
     "pnpm": {
       "source": "antfu/skills",
@@ -17,7 +17,16 @@
       "skillPath": "skills/pnpm/SKILL.md",
       "skillFolderHash": "4be8fd8b101fbcba93f2fbc432802034b294c790",
       "installedAt": "2026-04-30T03:45:39.736Z",
-      "updatedAt": "2026-09-01T03:03:25.268Z"
+      "updatedAt": "2026-09-01T03:46:05.216Z"
+    },
+    "test-driven-development": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neolabhq/context-engineering-kit.git",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "skillFolderHash": "bace396b4bd89d610971646687dc1951c2e210b6",
+      "installedAt": "2026-09-01T03:42:58.130Z",
+      "updatedAt": "2026-09-01T03:46:10.103Z"
     }
   },
   "dismissed": {

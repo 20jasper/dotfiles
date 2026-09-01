@@ -13,7 +13,7 @@ sudo dnf install -y \
   difftastic \
   libatomic # for node
 
-git lfs install
+git lfs install --skip-repo
 
 # ── Rust ──────────────────────────────────────────────────────────
 if ! command -v rustup &>/dev/null; then
@@ -32,13 +32,13 @@ else
 fi
 
 # ── Shell / git dotfiles ────────────────────────────────────────────
-ln -sf "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
-ln -sf "$HOME/dotfiles/.profile" "$HOME/.profile"
-ln -sf "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
-ln -sf "$HOME/dotfiles/prompt" "$HOME/.bash_prompt"
+ln -sfn "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
+ln -sfn "$HOME/dotfiles/.profile" "$HOME/.profile"
+ln -sfn "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -sfn "$HOME/dotfiles/prompt" "$HOME/.bash_prompt"
 
 mkdir -p "$HOME/.config/mise"
-ln -sf "$HOME/dotfiles/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
+ln -sfn "$HOME/dotfiles/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
 
 mise install -y
 eval "$(mise activate bash)"
@@ -47,22 +47,22 @@ eval "$(mise activate bash)"
 mise install npm:@anthropic-ai/claude-code -y
 
 mkdir -p "$HOME/.config/dcg"
-ln -sf "$HOME/dotfiles/.config/dcg/config.toml" "$HOME/.config/dcg/config.toml"
-ln -sf "$HOME/dotfiles/.config/dcg/packs" "$HOME/.config/dcg/packs"
+ln -sfn "$HOME/dotfiles/.config/dcg/config.toml" "$HOME/.config/dcg/config.toml"
+ln -sfn "$HOME/dotfiles/.config/dcg/packs" "$HOME/.config/dcg/packs"
 dcg install
 
 mkdir -p "$HOME/.claude"
-ln -sf "$HOME/dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
+ln -sfn "$HOME/dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
 
 mkdir -p "$HOME/.agents"
-ln -sf "$HOME/dotfiles/.agents/.skill-lock.json" "$HOME/.agents/.skill-lock.json"
+ln -sfn "$HOME/dotfiles/.agents/.skill-lock.json" "$HOME/.agents/.skill-lock.json"
 npx -y skills add antfu/skills -g -s vitest -y
 npx -y skills add antfu/skills -g -s pnpm -y
 npx -y skills add neolabhq/context-engineering-kit -g -s test-driven-development -y
 
 mkdir -p "$HOME/.config/systemd/user"
-ln -sf "$HOME/dotfiles/.config/systemd/user/kondo-clean.service" "$HOME/.config/systemd/user/kondo-clean.service"
-ln -sf "$HOME/dotfiles/.config/systemd/user/kondo-clean.timer" "$HOME/.config/systemd/user/kondo-clean.timer"
+ln -sfn "$HOME/dotfiles/.config/systemd/user/kondo-clean.service" "$HOME/.config/systemd/user/kondo-clean.service"
+ln -sfn "$HOME/dotfiles/.config/systemd/user/kondo-clean.timer" "$HOME/.config/systemd/user/kondo-clean.timer"
 loginctl enable-linger "$USER"
 systemctl --user daemon-reload
 systemctl --user enable --now kondo-clean.timer
