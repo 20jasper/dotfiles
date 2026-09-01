@@ -1,24 +1,6 @@
 {
   "version": 3,
   "skills": {
-    "migrate-oxfmt": {
-      "source": "oxc-project/oxc",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/oxc-project/oxc.git",
-      "skillPath": ".agents/skills/migrate-oxfmt/SKILL.md",
-      "skillFolderHash": "88fc039e94ee7bd12694dad843bc2bfdb76424f3",
-      "installedAt": "2026-04-26T21:31:08.331Z",
-      "updatedAt": "2026-04-26T21:31:08.331Z"
-    },
-    "find-skills": {
-      "source": "vercel-labs/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/skills.git",
-      "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
-      "installedAt": "2026-04-26T21:31:14.058Z",
-      "updatedAt": "2026-09-01T03:03:29.373Z"
-    },
     "vitest": {
       "source": "antfu/skills",
       "sourceType": "github",

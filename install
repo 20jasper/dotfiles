@@ -58,8 +58,6 @@ mkdir -p "$HOME/.agents"
 ln -sf "$HOME/dotfiles/.agents/.skill-lock.json" "$HOME/.agents/.skill-lock.json"
 npx -y skills add antfu/skills -g -s vitest -y
 npx -y skills add antfu/skills -g -s pnpm -y
-npx -y skills add vercel-labs/skills -g -s find-skills -y
-npx -y skills add oxc-project/oxc -g -s migrate-oxfmt -y
 npx -y skills add neolabhq/context-engineering-kit -g -s test-driven-development -y
 
 mkdir -p "$HOME/.config/systemd/user"
