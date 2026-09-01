@@ -1,5 +1,7 @@
 [tools]
 actionlint = "latest"
+zoxide = "latest"
+ripgrep = "latest"
 "cargo:cargo-diet" = "latest"
 "cargo:cargo-shear" = "latest"
 jq = "latest"
@@ -18,4 +20,5 @@ pinact = "latest"
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-smart-release" = "latest"
 "cargo:cargo-outdated" = "latest"
+"cargo:kondo" = "latest"
 "github:Dicklesworthstone/destructive_command_guard" = { version = "latest", exe = "dcg" }

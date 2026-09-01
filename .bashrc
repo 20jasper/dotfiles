@@ -31,6 +31,14 @@ eval "$(/home/jacob/.local/bin/mise activate bash)"
 export EDITOR=vim
 export VISUAL=vim
 
+set -o vi
+
+# history
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=200000
+
 source "$HOME/.bash_prompt"
 eval "$(fzf --bash)"
 

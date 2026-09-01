@@ -1,0 +1,8 @@
+[Unit]
+Description=Clean build artifacts from projects untouched for 1+ month
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/share/mise/installs/cargo-kondo/latest/bin/kondo --older 1M --all --quiet %h/coding
+StandardOutput=append:%h/.local/share/kondo-clean.log
+StandardError=append:%h/.local/share/kondo-clean.log

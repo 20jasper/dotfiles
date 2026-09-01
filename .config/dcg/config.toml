@@ -36,9 +36,7 @@ custom_paths = [
 ]
 
 [policy.rules]
-# Not destructive, but visible to others or leaves the local machine —
-# require explicit review every time instead of a blanket allow or a
-# blanket block. Agents get pull/fetch/commit/local-branch work for free.
+# review gate
 "personal.gate:git-push" = "ask"
 "personal.gate:git-tag" = "ask"
 "personal.gate:gh-pr-create" = "ask"
