@@ -1,0 +1,54 @@
+schema_version: 1
+id: personal.gate
+name: Personal review gate
+version: 1.0.0
+description: |
+  Commands that aren't destructive but are visible to others and shouldn't
+  fire on autopilot — require explicit review every time.
+
+keywords:
+  - git
+  - gh
+
+destructive_patterns:
+  - name: git-push
+    pattern: git\s+push
+    severity: high
+    executables:
+      - git
+    description: git push is visible to others — confirm before sending.
+
+  - name: gh-pr-create
+    pattern: gh\s+pr\s+create
+    severity: high
+    executables:
+      - gh
+    description: Opening a PR is visible to others — confirm before sending.
+
+  - name: gh-pr-close
+    pattern: gh\s+pr\s+close
+    severity: high
+    executables:
+      - gh
+    description: Closing a PR is visible to others — confirm before sending.
+
+  - name: gh-pr-merge
+    pattern: gh\s+pr\s+merge
+    severity: high
+    executables:
+      - gh
+    description: Merging a PR is visible to others — confirm before sending.
+
+  - name: git-tag
+    pattern: git\s+tag\s+(?!-l\b|--list\b|-d\b|--delete\b)\S
+    severity: high
+    executables:
+      - git
+    description: Creating a tag is easy to push by accident later — confirm before creating.
+
+  - name: gh-release-create
+    pattern: gh\s+release\s+create
+    severity: high
+    executables:
+      - gh
+    description: Publishing a release is visible to others — confirm before sending.

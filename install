@@ -1,8 +1,10 @@
-set -e 
+set -e
 
+# ── System packages ──────────────────────────────────────────────
 sudo dnf install -y \
   vim \
   git \
+  git-lfs \
   gh \
   valgrind \
   gcc \
@@ -10,8 +12,10 @@ sudo dnf install -y \
   fzf \
   difftastic \
   libatomic # for node
-  
-# rust
+
+git lfs install
+
+# ── Rust ──────────────────────────────────────────────────────────
 if ! command -v rustup &>/dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 else
@@ -25,15 +29,48 @@ cargo binstall -y \
   zoxide \
   ripgrep
 
-# mise
+# ── mise ──────────────────────────────────────────────────────────
 if ! command -v mise &>/dev/null; then
   curl https://mise.run | sh
-else 
+else
   mise self-update -y
   mise doctor > /dev/null
 fi
 
+# ── Shell / git dotfiles ────────────────────────────────────────────
 ln -sf "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
 ln -sf "$HOME/dotfiles/.profile" "$HOME/.profile"
 ln -sf "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -sf "$HOME/dotfiles/prompt" "$HOME/.bash_prompt"
 
+mkdir -p "$HOME/.config/mise"
+ln -sf "$HOME/dotfiles/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
+
+mise install -y
+eval "$(mise activate bash)"
+
+# ── AI tooling ──────────────────────────────────────────────────────
+# Claude Code CLI (also declared in .config/mise/config.toml, so
+# `mise install -y` above already covers it — pinned here explicitly too)
+mise install npm:@anthropic-ai/claude-code -y
+
+# dcg: blocks destructive commands (rm -rf, git reset --hard, etc.) from
+# agents, and gates push/PR-create/tag behind an explicit approval every
+# time instead of a blanket allow or a blanket block.
+mkdir -p "$HOME/.config/dcg"
+ln -sf "$HOME/dotfiles/.config/dcg/config.toml" "$HOME/.config/dcg/config.toml"
+ln -sf "$HOME/dotfiles/.config/dcg/packs" "$HOME/.config/dcg/packs"
+dcg install
+
+# Claude Code settings (hooks, plugins, attribution, effort level, etc.)
+mkdir -p "$HOME/.claude"
+ln -sf "$HOME/dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
+
+# agent skills (npx skills, vercel-labs/skills — not skillfish)
+mkdir -p "$HOME/.agents"
+ln -sf "$HOME/dotfiles/.agents/.skill-lock.json" "$HOME/.agents/.skill-lock.json"
+npx -y skills add antfu/skills -g -s vitest -y
+npx -y skills add antfu/skills -g -s pnpm -y
+npx -y skills add vercel-labs/skills -g -s find-skills -y
+npx -y skills add oxc-project/oxc -g -s migrate-oxfmt -y
+npx -y skills add neolabhq/context-engineering-kit -g -s test-driven-development -y

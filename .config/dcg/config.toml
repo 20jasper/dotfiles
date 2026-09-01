@@ -1,0 +1,47 @@
+# dcg configuration
+# https://github.com/Dicklesworthstone/destructive_command_guard
+
+[packs]
+enabled = [
+    "apigateway",
+    "backup",
+    "careful_company_running_windows",
+    "cdn",
+    "cicd",
+    "cloud",
+    "containers",
+    "database",
+    "dns",
+    "email",
+    "featureflags",
+    "infrastructure",
+    "kubernetes",
+    "loadbalancer",
+    "messaging",
+    "monitoring",
+    "package_managers",
+    "payment",
+    "platform",
+    "remote",
+    "search",
+    "secret_disclosure",
+    "secrets",
+    "storage",
+    "strict_git",
+    "system",
+    "windows",
+]
+custom_paths = [
+    "~/dotfiles/.config/dcg/packs/*.yaml",
+]
+
+[policy.rules]
+# Not destructive, but visible to others or leaves the local machine —
+# require explicit review every time instead of a blanket allow or a
+# blanket block. Agents get pull/fetch/commit/local-branch work for free.
+"personal.gate:git-push" = "ask"
+"personal.gate:git-tag" = "ask"
+"personal.gate:gh-pr-create" = "ask"
+"personal.gate:gh-pr-close" = "ask"
+"personal.gate:gh-pr-merge" = "ask"
+"personal.gate:gh-release-create" = "ask"

@@ -31,7 +31,10 @@ eval "$(/home/jacob/.local/bin/mise activate bash)"
 export EDITOR=vim
 export VISUAL=vim
 
-eval "$(zoxide init bash --cmd cd)"
-
-source ./prompt
+source "$HOME/.bash_prompt"
 eval "$(fzf --bash)"
+
+# opencode
+export PATH=/home/jacob/.opencode/bin:$PATH
+
+eval "$(zoxide init bash --cmd cd)"
