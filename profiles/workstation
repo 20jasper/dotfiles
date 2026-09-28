@@ -2,5 +2,6 @@ system-deps
 git
 shell
 mise
+mise-dev
 claude-code
 dcg
