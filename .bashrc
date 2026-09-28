@@ -24,9 +24,9 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-eval "$(/home/jacob/.local/bin/mise activate bash)"
+command -v mise &>/dev/null && eval "$(mise activate bash)"
 
 export EDITOR=vim
 export VISUAL=vim
@@ -40,9 +40,8 @@ HISTSIZE=100000
 HISTFILESIZE=200000
 
 source "$HOME/.bash_prompt"
-eval "$(fzf --bash)"
+command -v fzf &>/dev/null && eval "$(fzf --bash)"
 
-# opencode
-export PATH=/home/jacob/.opencode/bin:$PATH
+[ -d "$HOME/.opencode/bin" ] && export PATH="$HOME/.opencode/bin:$PATH"
 
-eval "$(zoxide init bash --cmd cd)"
+command -v zoxide &>/dev/null && eval "$(zoxide init bash --cmd cd)"

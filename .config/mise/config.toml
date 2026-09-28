@@ -2,3 +2,4 @@
 zoxide = "latest"
 ripgrep = "latest"
 jq = "latest"
+fzf = "latest"

@@ -1,6 +1,5 @@
 [tools]
 actionlint = "latest"
-fzf = "latest"
 "cargo:cargo-diet" = "latest"
 "cargo:cargo-shear" = "latest"
 node = "26"

@@ -1,18 +1,14 @@
 set -e
 cd "$(dirname "$0")"
 
-if ! command -v fzf &>/dev/null; then
-  if command -v mise &>/dev/null; then
-    mise use -g fzf -y
-  else
-    sudo dnf install -y fzf
-  fi
-fi
+while read -r m; do bash "modules/$m.sh"; done < profiles/baseline
+eval "$(mise activate bash)"
 
 if [ -n "$1" ]; then
   mods=$(cat "profiles/$1")
 else
-  mods=$(ls modules | sed 's/\.sh$//' | fzf --multi)
+  echo "profiles: $(ls profiles | tr '\n' ' ')(pass one as: install <profile>)" >&2
+  mods=$(ls modules | sed 's/\.sh$//' | fzf --multi --bind 'ctrl-a:select-all' --header 'tab: select, enter: confirm, ctrl-a: select all')
 fi
 
 for m in $mods; do
