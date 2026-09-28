@@ -1,68 +1,12 @@
 set -e
+cd "$(dirname "$0")"
 
-# ── System packages ──────────────────────────────────────────────
-sudo dnf install -y \
-  vim \
-  git \
-  git-lfs \
-  gh \
-  valgrind \
-  gcc \
-  awk \
-  fzf \
-  difftastic \
-  libatomic # for node
-
-git lfs install --skip-repo
-
-# ── Rust ──────────────────────────────────────────────────────────
-if ! command -v rustup &>/dev/null; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+if [ -n "$1" ]; then
+  mods=$(cat "profiles/$1")
 else
-    rustup update
-fi
-source "$HOME/.cargo/env"
-
-# ── mise ──────────────────────────────────────────────────────────
-if ! command -v mise &>/dev/null; then
-  curl https://mise.run | sh
-else
-  mise self-update -y
-  mise doctor > /dev/null
+  mods=$(ls modules | sed 's/\.sh$//' | fzf --multi)
 fi
 
-# ── Shell / git dotfiles ────────────────────────────────────────────
-ln -sfn "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
-ln -sfn "$HOME/dotfiles/.profile" "$HOME/.profile"
-ln -sfn "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
-ln -sfn "$HOME/dotfiles/prompt" "$HOME/.bash_prompt"
-
-mkdir -p "$HOME/.config/mise"
-ln -sfn "$HOME/dotfiles/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
-
-mise install -y
-eval "$(mise activate bash)"
-
-# ── AI tooling ──────────────────────────────────────────────────────
-mise install npm:@anthropic-ai/claude-code -y
-
-mkdir -p "$HOME/.config/dcg"
-ln -sfn "$HOME/dotfiles/.config/dcg/config.toml" "$HOME/.config/dcg/config.toml"
-ln -sfn "$HOME/dotfiles/.config/dcg/packs" "$HOME/.config/dcg/packs"
-dcg install
-
-mkdir -p "$HOME/.claude"
-ln -sfn "$HOME/dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
-
-mkdir -p "$HOME/.agents"
-ln -sfn "$HOME/dotfiles/.agents/.skill-lock.json" "$HOME/.agents/.skill-lock.json"
-npx -y skills add antfu/skills -g -s vitest -y
-npx -y skills add antfu/skills -g -s pnpm -y
-npx -y skills add neolabhq/context-engineering-kit -g -s test-driven-development -y
-
-mkdir -p "$HOME/.config/systemd/user"
-ln -sfn "$HOME/dotfiles/.config/systemd/user/kondo-clean.service" "$HOME/.config/systemd/user/kondo-clean.service"
-ln -sfn "$HOME/dotfiles/.config/systemd/user/kondo-clean.timer" "$HOME/.config/systemd/user/kondo-clean.timer"
-loginctl enable-linger "$USER"
-systemctl --user daemon-reload
-systemctl --user enable --now kondo-clean.timer
+for m in $mods; do
+  bash "modules/$m.sh"
+done
