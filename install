@@ -1,6 +1,8 @@
 set -e
 cd "$(dirname "$0")"
 
+command -v fzf &>/dev/null || sudo dnf install -y fzf
+
 if [ -n "$1" ]; then
   mods=$(cat "profiles/$1")
 else
